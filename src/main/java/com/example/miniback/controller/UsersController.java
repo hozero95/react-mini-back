@@ -20,17 +20,20 @@ public class UsersController {
     @Autowired
     private UsersService usersService;
 
+    // 테스트
     @GetMapping("/test")
     public ResponseEntity<String> getTest() {
         return ResponseEntity.ok("users test");
     }
 
+    // 테스트
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Users>> getUsersAll() {
         List<Users> users = usersService.getUsersAll();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+    // 테스트
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Optional<Users>> getUsers(@RequestParam Long userUnum) {
         Optional<Users> users = usersService.getUsers(userUnum);

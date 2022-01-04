@@ -33,6 +33,7 @@ public class AuthController {
         this.authService = authService;
     }
 
+    // 로그인
     @PostMapping("/signin")
     public ResponseEntity<TokenDTO> signin(@Valid @RequestBody LoginDTO loginDTO) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
@@ -55,29 +56,33 @@ public class AuthController {
         return new ResponseEntity<>(new TokenDTO(jwt), httpHeaders, HttpStatus.OK);
     }
 
+    // 회원가입
     @PostMapping("/signup")
     public ResponseEntity<Users> signup(@Valid @RequestBody UsersDTO usersDTO) throws DuplicateMemberException {
         return ResponseEntity.ok(authService.signup(usersDTO));
     }
 
+    // 비밀번호 체크
     // 얘 로직이 틀림.
     @PostMapping("/passwordcheck")
     public ResponseEntity<Boolean> passwordCheck(@RequestBody LoginDTO loginDTO) {
-        return authService.passwordCheck(loginDTO) ? new ResponseEntity<>(true, HttpStatus.OK) : new ResponseEntity<>(false, HttpStatus.OK);
+        return ResponseEntity.ok(authService.passwordCheck(loginDTO));
     }
 
+    // 아이디 체크
     @GetMapping("/idcheck")
     public ResponseEntity<Boolean> idCheck(@RequestParam String userId) {
-        boolean check = authService.getUserId(userId);
-        return new ResponseEntity<>(check, HttpStatus.OK);
+        return ResponseEntity.ok(authService.getUserId(userId));
     }
 
+    // 유저 정보 불러오기
     @GetMapping("/user")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<Users> getMyInfo() {
         return ResponseEntity.ok(authService.getMyUserWithAuthorities().get());
     }
 
+    // 특정 유저 정보 불러오기
     @GetMapping("/userid")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Users> getUserInfo(@RequestParam String userId) {

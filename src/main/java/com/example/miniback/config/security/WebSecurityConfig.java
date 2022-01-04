@@ -61,8 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // API 요청에 대한 권한 설정
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/admin/**").hasAnyRole("ADMIN")
-                .antMatchers("/api/user/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/api/users/**").hasAnyRole("ADMIN")
                 .anyRequest().permitAll()
 
                 // CORS 설정
