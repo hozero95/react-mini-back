@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Data
@@ -28,17 +29,26 @@ public class Users {
     @Column(name = "user_password")
     private String userPassword;
 
-//    @Column(name = "user_email")
-//    private String userEmail;
-//
-//    @Column(name = "user_address")
-//    private String userAddress;
-//
-//    @Column(name = "user_tel")
-//    private String userTel;
-//
-//    @Column(name = "user_regdate")
-//    private Date userRegdate;
+    @Column(name = "postcode")
+    private String postcode;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "detail_address")
+    private String detailAddress;
+
+    @Column(name = "extra_address")
+    private String extraAddress;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "tel")
+    private String tel;
+
+    @Column(name = "regdate")
+    private Date regdate;
 
     @ManyToMany
     @JoinTable(

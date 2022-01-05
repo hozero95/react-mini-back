@@ -19,4 +19,20 @@ public class UsersDTO {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotNull
     private String userPassword;
+
+    @NotNull
+    private String postcode;
+
+    @NotNull
+    private String address;
+
+    private String detailAddress;
+
+    private String extraAddress;
+
+    @NotNull
+    private String email;
+
+    @NotNull
+    private String tel;
 }

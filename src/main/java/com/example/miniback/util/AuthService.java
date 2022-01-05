@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,8 +39,16 @@ public class AuthService {
         // Authority 정보와 User 정보 생성
         Authority authority = Authority.builder().authorityName("ROLE_USER").build();
 
-        Users users = Users.builder().userId(usersDTO.getUserId())
+        Users users = Users.builder()
+                .userId(usersDTO.getUserId())
                 .userPassword(passwordEncoder.encode(usersDTO.getUserPassword()))
+                .postcode(usersDTO.getPostcode())
+                .address(usersDTO.getAddress())
+                .detailAddress(usersDTO.getDetailAddress())
+                .extraAddress(usersDTO.getExtraAddress())
+                .email(usersDTO.getEmail())
+                .tel(usersDTO.getTel())
+                .regdate(new Date())
                 .authorities(Collections.singleton(authority))
                 .build();
 
