@@ -28,4 +28,7 @@ public class Products {
 
     @Column(name = "regdate")
     private Date regdate;
+
+    @Column(name = "moddate")
+    private Date moddate;
 }

@@ -25,7 +25,7 @@ public class UsersService {
     public Users updateUsers(Users users) {
         Optional<Users> user = getUsers(users.getUserUnum());
         if (user != null && !user.isEmpty()) {
-            Users user2 = Users.builder()
+            Users data = Users.builder()
                     .userUnum(users.getUserUnum())
                     .userId(users.getUserId())
                     .userPassword(user.get().getUserPassword())
@@ -37,7 +37,7 @@ public class UsersService {
                     .tel(users.getTel())
                     .regdate(new Date())
                     .build();
-            return usersRepository.save(user2);
+            return usersRepository.save(data);
         }
         return null;
     }
