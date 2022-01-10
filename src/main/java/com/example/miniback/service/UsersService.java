@@ -35,7 +35,7 @@ public class UsersService {
                     .extraAddress(users.getExtraAddress())
                     .email(users.getEmail())
                     .tel(users.getTel())
-                    .regdate(new Date())
+                    .regdate(user.get().getRegdate())
                     .build();
             return usersRepository.save(data);
         }
