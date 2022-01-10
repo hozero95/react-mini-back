@@ -10,16 +10,20 @@ import java.util.Optional;
 
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Long> {
-    public List<Users> findAll();
+    List<Users> findAll();
 
-    public Optional<Users> findByUserUnum(Long userUnum);
+    Optional<Users> findByUserUnum(Long userUnum);
+
+    Long deleteByUserUnum(Long userUnum);
+
+    boolean existsByUserUnum(Long userUnum);
+
+    boolean existsByUserId(String userId);
 
     // AuthService
     // userId를 기준으로 User 정보를 가져올 때 권한 정보도 같이 가져옴
     @EntityGraph(attributePaths = "authorities")
-    public Optional<Users> findOneWithAuthoritiesByUserId(String userId);
+    Optional<Users> findOneWithAuthoritiesByUserId(String userId);
 
-    public Boolean existsByUserId(String userId);
-
-    public List<Users> findByUserId(String userId);
+    List<Users> findByUserId(String userId);
 }
