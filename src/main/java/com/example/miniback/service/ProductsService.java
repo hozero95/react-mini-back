@@ -35,14 +35,15 @@ public class ProductsService {
     }
 
     public Products updateProducts(Products products) {
-        if (productsRepository.existsByProductUnum(products.getProductUnum())) {
-            Products product = Products.builder()
+        Optional<Products> product = getProducts(products.getProductUnum());
+        if (product != null && !product.isEmpty()) {
+            Products data = Products.builder()
                     .productUnum(products.getProductUnum())
                     .productName(products.getProductName())
                     .price(products.getPrice())
-                    .regdate(new Date())
+                    .regdate(product.get().getRegdate())
                     .build();
-            return productsRepository.save(product);
+            return productsRepository.save(data);
         }
         return null;
     }
