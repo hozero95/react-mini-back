@@ -47,6 +47,16 @@ public class NoticesController {
         return ResponseEntity.ok("success");
     }
 
+    @PutMapping(value = "/views", produces = MediaType.TEXT_PLAIN_VALUE)
+    @Transactional
+    public ResponseEntity<String> viewNotices(@RequestBody Notices notices) {
+        Notices notice = noticesService.updateNotices(notices);
+        if (notice == null || notice.getNoticeUnum() == null) {
+            return new ResponseEntity<>("fail", HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok("success");
+    }
+
     @PutMapping(produces = MediaType.TEXT_PLAIN_VALUE)
     @PreAuthorize("hasAnyRole('ADMIN')")
     @Transactional
